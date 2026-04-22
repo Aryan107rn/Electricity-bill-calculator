@@ -1,16 +1,138 @@
-# React + Vite
+# ⚡ Electricity Bill Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern electricity bill calculator built using **Object-Oriented Programming (OOP)** principles.
+This project demonstrates **Inheritance** and **Polymorphism** by implementing different tariff systems (Domestic & Commercial) with customizable slab rates.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
 
-## React Compiler
+* 📊 Slab-based electricity bill calculation
+* 🧠 OOP design (Base class + derived tariff classes)
+* 🔄 Supports multiple tariff types:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+  * Domestic Tariff
+  * Commercial Tariff
+* ⚙️ Custom slab configuration support
+* 💰 INR currency formatting
+* 🎯 Clean and scalable logic for real-world use
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠 Tech Stack
+
+* **Frontend:** React + Vite
+* **Language:** JavaScript (ES6+)
+* **Styling:** Tailwind CSS
+* **Concepts Used:**
+
+  * Inheritance
+  * Polymorphism
+  * Modular architecture
+
+---
+
+## 📂 Project Structure
+
+```bash
+electricity-bill-calculator/
+│── src/
+│   ├── logic/
+│   │   └── BillCalculator.js   # Core OOP logic
+│   ├── components/             # UI components
+│   ├── App.jsx
+│   └── main.jsx
+│── public/
+│── package.json
+│── README.md
+```
+
+---
+
+## ⚙️ How It Works
+
+1. A base class `BillCalculator` handles:
+
+   * Unit input
+   * Slab iteration
+   * Bill calculation
+
+2. Derived classes:
+
+   * `DomesticTariff`
+   * `CommercialTariff`
+
+   → Override slab definitions (Polymorphism)
+
+3. Billing is calculated by:
+
+   * Iterating through slabs
+   * Applying respective rates
+   * Summing total cost
+
+---
+
+## ▶️ Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Aryan107rn/electricity-bill-calculator.git
+cd electricity-bill-calculator
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+# or
+pnpm install
+```
+
+### 3. Run the development server
+
+```bash
+npm run dev
+```
+
+---
+
+## 📸 Screenshots
+
+> Add your UI screenshots here (important for resume impact)
+
+---
+
+## 🔮 Future Improvements
+
+* Add fixed charges & taxes (GST)
+* Monthly bill history tracking
+* Dark mode UI
+* Export bill as PDF
+* Real-time tariff API integration
+
+---
+
+## 📌 Why This Project?
+
+This project is not just a calculator — it demonstrates:
+
+* Writing **clean, maintainable OOP code**
+* Designing **extensible systems**
+* Bridging **logic + UI integration**
+
+---
+
+## 📄 License
+
+This project is open-source and available under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+**Aryan Nakade**
+
+---
+
+⭐ If you found this useful, consider giving it a star!
