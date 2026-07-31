@@ -1,138 +1,139 @@
-# ⚡ Electricity Bill Calculator
+# ⚡ ElectraBill — Full Stack Electricity Bill Calculator
 
-A modern electricity bill calculator built using **Object-Oriented Programming (OOP)** principles.
-This project demonstrates **Inheritance** and **Polymorphism** by implementing different tariff systems (Domestic & Commercial) with customizable slab rates.
-
----
-
-## 🚀 Features
-
-* 📊 Slab-based electricity bill calculation
-* 🧠 OOP design (Base class + derived tariff classes)
-* 🔄 Supports multiple tariff types:
-
-  * Domestic Tariff
-  * Commercial Tariff
-* ⚙️ Custom slab configuration support
-* 💰 INR currency formatting
-* 🎯 Clean and scalable logic for real-world use
+A production-quality full-stack electricity bill calculator built with **Node.js + Express + MongoDB + React (Vite)**.
 
 ---
 
-## 🛠 Tech Stack
+## 🏗️ Architecture
 
-* **Frontend:** React + Vite
-* **Language:** JavaScript (ES6+)
-* **Styling:** Tailwind CSS
-* **Concepts Used:**
-
-  * Inheritance
-  * Polymorphism
-  * Modular architecture
-
----
-
-## 📂 Project Structure
-
-```bash
+```
 electricity-bill-calculator/
-│── src/
-│   ├── logic/
-│   │   └── BillCalculator.js   # Core OOP logic
-│   ├── components/             # UI components
-│   ├── App.jsx
-│   └── main.jsx
-│── public/
-│── package.json
-│── README.md
+├── backend/                 ← Node.js + Express + MongoDB API
+│   ├── src/
+│   │   ├── config/          ← DB connection & state slab data
+│   │   ├── controllers/     ← Bill & State controllers
+│   │   ├── middleware/      ← Error handler
+│   │   ├── models/          ← Mongoose Bill schema
+│   │   ├── routes/          ← Express routes
+│   │   ├── utils/           ← OOP Calculator (Factory Pattern)
+│   │   └── server.js        ← Entry point
+│   └── .env                 ← Environment config
+│
+└── src/                     ← React (Vite) frontend
+    ├── components/          ← Navbar, SlabCard, BillResult, ApplianceEstimator
+    ├── pages/               ← Calculator, History, Stats
+    ├── hooks/               ← useDarkMode, useBills
+    └── services/            ← Axios API client
 ```
 
 ---
 
-## ⚙️ How It Works
+## 🚀 Quick Start
 
-1. A base class `BillCalculator` handles:
+### Prerequisites
+- **Node.js** v18+
+- **MongoDB** running locally (or Atlas URI)
 
-   * Unit input
-   * Slab iteration
-   * Bill calculation
-
-2. Derived classes:
-
-   * `DomesticTariff`
-   * `CommercialTariff`
-
-   → Override slab definitions (Polymorphism)
-
-3. Billing is calculated by:
-
-   * Iterating through slabs
-   * Applying respective rates
-   * Summing total cost
-
----
-
-## ▶️ Getting Started
-
-### 1. Clone the repository
+### 1. Install all dependencies
 
 ```bash
-git clone https://github.com/Aryan107rn/electricity-bill-calculator.git
-cd electricity-bill-calculator
+# Run the setup script (installs both backend + frontend)
+bash setup.sh
 ```
 
-### 2. Install dependencies
-
+Or manually:
 ```bash
-npm install
-# or
-pnpm install
+# Backend
+cd backend && npm install
+
+# Frontend (root)
+cd .. && npm install
 ```
 
-### 3. Run the development server
+### 2. Configure environment
 
+The `backend/.env` file is pre-configured for local MongoDB:
+```
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/electricity_bill_db
+NODE_ENV=development
+```
+
+> 💡 To use MongoDB Atlas, replace `MONGO_URI` with your Atlas connection string.
+
+### 3. Start both servers
+
+**Terminal 1 — Backend:**
+```bash
+cd backend && npm run dev
+```
+
+**Terminal 2 — Frontend:**
 ```bash
 npm run dev
 ```
 
----
-
-## 📸 Screenshots
-
-> Add your UI screenshots here (important for resume impact)
+- 🌐 Frontend: http://localhost:5173
+- 🔌 API: http://localhost:5000/api/health
 
 ---
 
-## 🔮 Future Improvements
+## ✨ Features
 
-* Add fixed charges & taxes (GST)
-* Monthly bill history tracking
-* Dark mode UI
-* Export bill as PDF
-* Real-time tariff API integration
+### Calculator Page
+- **5 Indian States**: Maharashtra, Delhi, Karnataka, Gujarat, Uttar Pradesh
+- **3 Connection Types**: Domestic, Commercial, Industrial
+- **Real slab-rate preview** with animated bars & active slab highlighting
+- **Units slider** for quick input
+- **Appliance Estimator** — select from 12 preset appliances or add custom ones to estimate your monthly kWh
+- **Auto-save** — every calculation is saved to MongoDB
+- **Print / PDF** — browser-based bill printing with formatted receipt
+
+### History Page
+- Full bill history from MongoDB
+- Filter by **state** and **connection type**
+- Summary stats (count, total spend, average)
+- **Delete** individual records with animation
+
+### Statistics Page
+- Overview stat cards (total bills, spend, avg, max units)
+- **Pie chart** — spend breakdown by connection type
+- **Bar chart** — spend by state
+- **Line chart** — bill amount trend over time
+- Highest / Lowest bill highlights
+
+### UI/UX
+- **Dark / Light mode** toggle (persisted to localStorage)
+- Animated background mesh
+- Glassmorphism card design
+- Responsive for all screen sizes
+- Toast notifications (react-hot-toast)
 
 ---
 
-## 📌 Why This Project?
+## 🔌 API Endpoints
 
-This project is not just a calculator — it demonstrates:
-
-* Writing **clean, maintainable OOP code**
-* Designing **extensible systems**
-* Bridging **logic + UI integration**
-
----
-
-## 📄 License
-
-This project is open-source and available under the MIT License.
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/health` | Health check |
+| GET | `/api/states` | Get all state slab configurations |
+| POST | `/api/bills/calculate` | Calculate + save a bill |
+| GET | `/api/bills/history` | Get bill history |
+| GET | `/api/bills/stats` | Get aggregated statistics |
+| DELETE | `/api/bills/:id` | Delete a bill |
+| POST | `/api/bills/estimate-appliances` | Estimate units from appliances |
 
 ---
 
-## 👨‍💻 Author
+## 🎨 Tech Stack
 
-**Aryan Nakade**
-
----
-
-⭐ If you found this useful, consider giving it a star!
+| Layer | Tech |
+|-------|------|
+| Frontend | React 19, Vite, React Router v6 |
+| Styling | Vanilla CSS (custom design system) |
+| Charts | Recharts |
+| HTTP | Axios |
+| Toasts | react-hot-toast |
+| Backend | Node.js, Express 4 |
+| Database | MongoDB + Mongoose |
+| OOP Pattern | Factory Pattern (BaseCalculator) |
