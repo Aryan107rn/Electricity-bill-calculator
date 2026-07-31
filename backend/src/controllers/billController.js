@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Bill from "../models/Bill.js";
 import { getCalculator } from "../utils/calculator.js";
 
@@ -16,7 +17,7 @@ export const calculateBill = async (req, res, next) => {
     const calculator = getCalculator(state, connectionType, Number(units));
     const result = calculator.calculateTotal();
 
-    const bill = await Bill.create({
+    let billData = {
       state,
       connectionType,
       units: Number(units),
@@ -24,7 +25,18 @@ export const calculateBill = async (req, res, next) => {
       charges: result.charges,
       totalAmount: result.totalAmount,
       month: month || new Date().toLocaleString("default", { month: "long", year: "numeric" }),
-    });
+    };
+
+    let bill = billData;
+    
+    // Only try to save if DB is connected to avoid 10s timeouts
+    if (mongoose.connection.readyState === 1) {
+      try {
+        bill = await Bill.create(billData);
+      } catch (dbErr) {
+        console.warn("Could not save to DB:", dbErr.message);
+      }
+    }
 
     res.status(201).json({ success: true, data: bill });
   } catch (err) {
@@ -35,6 +47,10 @@ export const calculateBill = async (req, res, next) => {
 // GET /api/bills/history
 export const getBillHistory = async (req, res, next) => {
   try {
+    if (mongoose.connection.readyState !== 1) {
+      return res.json({ success: true, count: 0, data: [] });
+    }
+
     const { state, connectionType, limit = 50 } = req.query;
     const filter = {};
     if (state) filter.state = state;
@@ -53,6 +69,9 @@ export const getBillHistory = async (req, res, next) => {
 // DELETE /api/bills/:id
 export const deleteBill = async (req, res, next) => {
   try {
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(503).json({ success: false, message: "Database is unavailable" });
+    }
     const bill = await Bill.findByIdAndDelete(req.params.id);
     if (!bill) {
       return res.status(404).json({ success: false, message: "Bill not found" });
@@ -66,6 +85,18 @@ export const deleteBill = async (req, res, next) => {
 // GET /api/bills/stats
 export const getBillStats = async (req, res, next) => {
   try {
+    if (mongoose.connection.readyState !== 1) {
+      return res.json({
+        success: true,
+        data: {
+          overview: { totalBills: 0, totalSpend: 0, avgBill: 0, maxBill: 0, minBill: 0, totalUnits: 0 },
+          byType: [],
+          byState: [],
+          recent: [],
+        },
+      });
+    }
+
     const [agg] = await Bill.aggregate([
       {
         $group: {
