@@ -12,7 +12,7 @@ export default function HistoryPage() {
 
   useEffect(() => {
     fetchBills({ state: filterState || undefined, connectionType: filterType || undefined });
-  }, [filterState, filterType]);
+  }, [fetchBills, filterState, filterType]);
 
   const handleDelete = async (id) => {
     setDeletingId(id);

@@ -1,4 +1,5 @@
 import { NavLink, Link } from "react-router-dom";
+import { createElement } from "react";
 import { Zap, LayoutDashboard, History, BarChart3, Sun, Moon, Menu, X } from "lucide-react";
 import { useDarkMode } from "../hooks/useDarkMode";
 import { useState } from "react";
@@ -26,15 +27,15 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <ul className="navbar-nav" style={{ display: "flex" }}>
-          {links.map(({ to, label, icon: Icon }) => (
-            <li key={to}>
+          {links.map((link) => (
+            <li key={link.to}>
               <NavLink
-                to={to}
-                end={to === "/"}
+                to={link.to}
+                end={link.to === "/"}
                 className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
               >
-                <Icon size={15} style={{ marginRight: 4, verticalAlign: "middle" }} />
-                {label}
+                {createElement(link.icon, { size: 15, style: { marginRight: 4, verticalAlign: "middle" } })}
+                {link.label}
               </NavLink>
             </li>
           ))}
@@ -58,16 +59,16 @@ export default function Navbar() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div style={{ padding: "0.75rem 1.5rem 1rem", borderTop: "1px solid var(--border)", display: "flex", flexDirection: "column", gap: "0.25rem" }}>
-          {links.map(({ to, label, icon: Icon }) => (
+          {links.map((link) => (
             <NavLink
-              key={to}
-              to={to}
-              end={to === "/"}
+              key={link.to}
+              to={link.to}
+              end={link.to === "/"}
               className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
               onClick={() => setMobileOpen(false)}
               style={{ display: "flex", alignItems: "center", gap: "8px" }}
             >
-              <Icon size={16} /> {label}
+              {createElement(link.icon, { size: 16 })} {link.label}
             </NavLink>
           ))}
         </div>

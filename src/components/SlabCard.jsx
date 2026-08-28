@@ -5,13 +5,6 @@ const RATE_MAX = 20;
 export default function SlabCard({ slabs, activeUnits = 0 }) {
   if (!slabs || slabs.length === 0) return null;
 
-  let consumed = activeUnits;
-  const highlightIndex = slabs.findIndex((s) => {
-    const max = s.max === Infinity || s.max === "∞" ? Infinity : s.max;
-    if (consumed > 0 && consumed >= s.min) return true;
-    return false;
-  });
-
   // Determine which slab the units fall into
   let remaining = activeUnits;
   let activeSlab = -1;

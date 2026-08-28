@@ -1,5 +1,4 @@
 import { Receipt, Zap, DollarSign, Percent, Layers, Download, Save } from "lucide-react";
-import toast from "react-hot-toast";
 
 const CHARGE_ICONS = {
   energy: <Zap size={14} />,

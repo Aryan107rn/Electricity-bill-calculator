@@ -16,9 +16,7 @@ export default function CalculatorPage() {
   const [statesData, setStatesData] = useState([]);
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [saving, setSaving] = useState(false);
   const [showEstimator, setShowEstimator] = useState(false);
-  const [saved, setSaved] = useState(false);
 
   // Load states from backend
   useEffect(() => {
@@ -26,9 +24,6 @@ export default function CalculatorPage() {
       .then((res) => setStatesData(res.data || []))
       .catch(() => {});
   }, []);
-
-  // Reset result when inputs change
-  useEffect(() => { setResult(null); setSaved(false); }, [state, connectionType, units]);
 
   const currentStateData = statesData.find((s) => s.name === state);
   const currentTypeData = currentStateData?.types?.find((t) => t.type === connectionType);
@@ -40,7 +35,6 @@ export default function CalculatorPage() {
       return;
     }
     setLoading(true);
-    setSaved(false);
     try {
       // Calculate locally for instant feedback, then save via the calculate endpoint
       const res = await calculateBill({ state, connectionType, units: Number(units), month });
@@ -51,7 +45,6 @@ export default function CalculatorPage() {
         totalAmount: bill.totalAmount,
         _id: bill._id,
       });
-      setSaved(true);
       toast.success("Bill calculated & saved!", { icon: "⚡" });
     } catch (err) {
       toast.error(err.message);
@@ -85,7 +78,14 @@ export default function CalculatorPage() {
               <div className="form-group">
                 <label className="form-label"><MapPin size={12} /> State</label>
                 <div className="select-wrap">
-                  <select className="form-select" value={state} onChange={(e) => setState(e.target.value)}>
+                  <select
+                    className="form-select"
+                    value={state}
+                    onChange={(e) => {
+                      setState(e.target.value);
+                      setResult(null);
+                    }}
+                  >
                     {statesData.length > 0
                       ? statesData.map((s) => <option key={s.name}>{s.name}</option>)
                       : ["Maharashtra","Delhi","Karnataka","Gujarat","Uttar Pradesh"].map((s) => <option key={s}>{s}</option>)
@@ -96,7 +96,14 @@ export default function CalculatorPage() {
               <div className="form-group">
                 <label className="form-label"><Plug size={12} /> Connection Type</label>
                 <div className="select-wrap">
-                  <select className="form-select" value={connectionType} onChange={(e) => setConnectionType(e.target.value)}>
+                  <select
+                    className="form-select"
+                    value={connectionType}
+                    onChange={(e) => {
+                      setConnectionType(e.target.value);
+                      setResult(null);
+                    }}
+                  >
                     <option value="domestic">🏠 Domestic</option>
                     <option value="commercial">🏢 Commercial</option>
                     <option value="industrial">🏭 Industrial</option>
@@ -123,7 +130,10 @@ export default function CalculatorPage() {
                   type="number"
                   className="form-input"
                   value={units}
-                  onChange={(e) => setUnits(e.target.value)}
+                  onChange={(e) => {
+                    setUnits(e.target.value);
+                    setResult(null);
+                  }}
                   min={0}
                   max={10000}
                   placeholder="Enter units"
@@ -135,7 +145,10 @@ export default function CalculatorPage() {
                   type="range"
                   min={0} max={2000} step={10}
                   value={Math.min(units, 2000)}
-                  onChange={(e) => setUnits(Number(e.target.value))}
+                  onChange={(e) => {
+                    setUnits(Number(e.target.value));
+                    setResult(null);
+                  }}
                   style={{
                     background: `linear-gradient(to right, var(--accent-1) ${(Math.min(units, 2000) / 2000) * 100}%, var(--bg-secondary) 0%)`
                   }}
@@ -198,7 +211,6 @@ export default function CalculatorPage() {
             <BillResult
               result={result}
               meta={{ state, connectionType, units, month }}
-              saving={saving}
             />
           ) : (
             <div className="card" style={{ minHeight: 400, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -215,7 +227,10 @@ export default function CalculatorPage() {
       {/* Appliance Estimator Modal */}
       {showEstimator && (
         <ApplianceEstimator
-          onResult={(u) => setUnits(u)}
+          onResult={(u) => {
+            setUnits(u);
+            setResult(null);
+          }}
           onClose={() => setShowEstimator(false)}
         />
       )}
