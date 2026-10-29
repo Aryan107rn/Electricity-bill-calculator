@@ -32,7 +32,7 @@ electricity-bill-calculator/
 
 ### Prerequisites
 - **Node.js** v18+
-- **MongoDB** running locally (or Atlas URI)
+- MongoDB running locally (or an Atlas URI) for database-backed storage; without it, bills are stored in `backend/data/bills.json`.
 
 ### 1. Install all dependencies
 
@@ -54,12 +54,12 @@ cd .. && npm install
 
 The `backend/.env` file is pre-configured for local MongoDB:
 ```
-PORT=5000
+PORT=5001
 MONGO_URI=mongodb://localhost:27017/electricity_bill_db
 NODE_ENV=development
 ```
 
-> 💡 To use MongoDB Atlas, replace `MONGO_URI` with your Atlas connection string.
+> 💡 To use MongoDB Atlas, replace `MONGO_URI` with your Atlas connection string. Local JSON storage keeps history and statistics available when MongoDB is offline.
 
 ### 3. Start both servers
 
@@ -74,7 +74,7 @@ npm run dev
 ```
 
 - 🌐 Frontend: http://localhost:5173
-- 🔌 API: http://localhost:5000/api/health
+- 🔌 API: http://localhost:5001/api/health
 
 ---
 
@@ -86,11 +86,11 @@ npm run dev
 - **Real slab-rate preview** with animated bars & active slab highlighting
 - **Units slider** for quick input
 - **Appliance Estimator** — select from 12 preset appliances or add custom ones to estimate your monthly kWh
-- **Auto-save** — every calculation is saved to MongoDB
+- **Auto-save** — calculations save to MongoDB when connected, with a local JSON fallback otherwise
 - **Print / PDF** — browser-based bill printing with formatted receipt
 
 ### History Page
-- Full bill history from MongoDB
+- Full bill history from MongoDB or the local JSON fallback
 - Filter by **state** and **connection type**
 - Summary stats (count, total spend, average)
 - **Delete** individual records with animation

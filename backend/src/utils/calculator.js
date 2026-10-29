@@ -17,7 +17,7 @@ class BaseCalculator {
 
     for (const slab of this.slabs) {
       if (remaining <= 0) break;
-      const maxUnits = slab.max === Infinity ? remaining : slab.max - slab.min + 1;
+      const maxUnits = slab.max === Infinity ? remaining : slab.max - slab.min;
       const slabUnits = Math.min(remaining, maxUnits);
       const amount = slabUnits * slab.rate;
       breakdown.push({

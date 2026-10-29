@@ -12,7 +12,7 @@ export class BaseCalculator {
     for (let slab of this.slabs) {
       if (remaining <= 0) break;
 
-      let slabUnits = Math.min(remaining, slab.max - slab.min + 1);
+      let slabUnits = Math.min(remaining, slab.max - slab.min);
       let amount = slabUnits * slab.rate;
 
       breakdown.push({

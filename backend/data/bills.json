@@ -1,0 +1,294 @@
+[
+  {
+    "state": "Maharashtra",
+    "connectionType": "domestic",
+    "units": 150,
+    "breakdown": [
+      {
+        "range": "0-100",
+        "units": 100,
+        "rate": 4.43,
+        "amount": 443
+      },
+      {
+        "range": "101-300",
+        "units": 50,
+        "rate": 9.64,
+        "amount": 482
+      }
+    ],
+    "charges": {
+      "energy": 925,
+      "fixed": 130,
+      "tax": 74,
+      "fuel": 18.5
+    },
+    "totalAmount": 1147.5,
+    "month": "October 2026",
+    "_id": "2ec6825d-bac8-4caa-a5da-f896813d23aa",
+    "createdAt": "2026-10-29T17:08:35.423Z"
+  },
+  {
+    "state": "Delhi",
+    "connectionType": "commercial",
+    "units": 920,
+    "breakdown": [
+      {
+        "range": "0-200",
+        "units": 200,
+        "rate": 7,
+        "amount": 1400
+      },
+      {
+        "range": "201-500",
+        "units": 299,
+        "rate": 9.5,
+        "amount": 2840.5
+      },
+      {
+        "range": "501+",
+        "units": 421,
+        "rate": 11.5,
+        "amount": 4841.5
+      }
+    ],
+    "charges": {
+      "energy": 9082,
+      "fixed": 250,
+      "tax": 908.2,
+      "fuel": 181.64
+    },
+    "totalAmount": 10421.84,
+    "month": "October 2026",
+    "_id": "b307d9c8-73c7-44dd-898c-7b307713766d",
+    "createdAt": "2026-10-29T17:07:50.673Z"
+  },
+  {
+    "state": "Karnataka",
+    "connectionType": "commercial",
+    "units": 1350,
+    "breakdown": [
+      {
+        "range": "0-200",
+        "units": 200,
+        "rate": 7.5,
+        "amount": 1500
+      },
+      {
+        "range": "201-500",
+        "units": 299,
+        "rate": 9.8,
+        "amount": 2930.2
+      },
+      {
+        "range": "501+",
+        "units": 851,
+        "rate": 12,
+        "amount": 10212
+      }
+    ],
+    "charges": {
+      "energy": 14642.2,
+      "fixed": 200,
+      "tax": 1464.22,
+      "fuel": 292.84
+    },
+    "totalAmount": 16599.26,
+    "month": "October 2026",
+    "_id": "1bad082e-f369-4c00-bb20-8ad99fb9f4a4",
+    "createdAt": "2026-10-29T17:07:46.433Z"
+  },
+  {
+    "state": "Karnataka",
+    "connectionType": "domestic",
+    "units": 1350,
+    "breakdown": [
+      {
+        "range": "0-30",
+        "units": 30,
+        "rate": 0,
+        "amount": 0
+      },
+      {
+        "range": "31-100",
+        "units": 69,
+        "rate": 3.65,
+        "amount": 251.85
+      },
+      {
+        "range": "101-200",
+        "units": 99,
+        "rate": 6,
+        "amount": 594
+      },
+      {
+        "range": "201-500",
+        "units": 299,
+        "rate": 7.2,
+        "amount": 2152.8
+      },
+      {
+        "range": "501+",
+        "units": 853,
+        "rate": 8.3,
+        "amount": 7079.9
+      }
+    ],
+    "charges": {
+      "energy": 10078.55,
+      "fixed": 50,
+      "tax": 604.71,
+      "fuel": 201.57
+    },
+    "totalAmount": 10934.83,
+    "month": "October 2026",
+    "_id": "a1d19f22-a53e-446d-b675-49916b27fa0b",
+    "createdAt": "2026-10-29T17:07:44.378Z"
+  },
+  {
+    "state": "Maharashtra",
+    "connectionType": "domestic",
+    "units": 1320,
+    "breakdown": [
+      {
+        "range": "0-100",
+        "units": 100,
+        "rate": 4.43,
+        "amount": 443
+      },
+      {
+        "range": "101-300",
+        "units": 199,
+        "rate": 9.64,
+        "amount": 1918.36
+      },
+      {
+        "range": "301-500",
+        "units": 199,
+        "rate": 12.83,
+        "amount": 2553.17
+      },
+      {
+        "range": "501+",
+        "units": 822,
+        "rate": 14.33,
+        "amount": 11779.26
+      }
+    ],
+    "charges": {
+      "energy": 16693.79,
+      "fixed": 130,
+      "tax": 1335.5,
+      "fuel": 333.88
+    },
+    "totalAmount": 18493.17,
+    "month": "October 2026",
+    "_id": "b4cde667-e509-44f4-96e1-fa2295abe0e4",
+    "createdAt": "2026-10-29T17:07:32.353Z"
+  },
+  {
+    "state": "Maharashtra",
+    "connectionType": "domestic",
+    "units": 480,
+    "breakdown": [
+      {
+        "range": "0-100",
+        "units": 100,
+        "rate": 4.43,
+        "amount": 443
+      },
+      {
+        "range": "101-300",
+        "units": 199,
+        "rate": 9.64,
+        "amount": 1918.36
+      },
+      {
+        "range": "301-500",
+        "units": 181,
+        "rate": 12.83,
+        "amount": 2322.23
+      }
+    ],
+    "charges": {
+      "energy": 4683.59,
+      "fixed": 130,
+      "tax": 374.69,
+      "fuel": 93.67
+    },
+    "totalAmount": 5281.95,
+    "month": "October 2026",
+    "_id": "e60f393d-8235-4212-87f7-5d3455a8fb88",
+    "createdAt": "2026-10-29T17:07:30.021Z"
+  },
+  {
+    "state": "Maharashtra",
+    "connectionType": "domestic",
+    "units": 880,
+    "breakdown": [
+      {
+        "range": "0-100",
+        "units": 100,
+        "rate": 4.43,
+        "amount": 443
+      },
+      {
+        "range": "101-300",
+        "units": 199,
+        "rate": 9.64,
+        "amount": 1918.36
+      },
+      {
+        "range": "301-500",
+        "units": 199,
+        "rate": 12.83,
+        "amount": 2553.17
+      },
+      {
+        "range": "501+",
+        "units": 382,
+        "rate": 14.33,
+        "amount": 5474.06
+      }
+    ],
+    "charges": {
+      "energy": 10388.59,
+      "fixed": 130,
+      "tax": 831.09,
+      "fuel": 207.77
+    },
+    "totalAmount": 11557.45,
+    "month": "October 2026",
+    "_id": "818c9133-3f9c-4165-988f-7ede9dd3603d",
+    "createdAt": "2026-10-29T17:07:28.393Z"
+  },
+  {
+    "state": "Maharashtra",
+    "connectionType": "domestic",
+    "units": 150,
+    "breakdown": [
+      {
+        "range": "0-100",
+        "units": 100,
+        "rate": 4.43,
+        "amount": 443
+      },
+      {
+        "range": "101-300",
+        "units": 50,
+        "rate": 9.64,
+        "amount": 482
+      }
+    ],
+    "charges": {
+      "energy": 925,
+      "fixed": 130,
+      "tax": 74,
+      "fuel": 18.5
+    },
+    "totalAmount": 1147.5,
+    "month": "October 2026",
+    "_id": "d465e0b0-1b44-4f8d-950f-4dc1451417fc",
+    "createdAt": "2026-10-29T17:07:26.811Z"
+  }
+]
